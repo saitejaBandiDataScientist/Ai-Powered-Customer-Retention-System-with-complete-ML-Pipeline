@@ -15,7 +15,7 @@ Jinja2==3.1.6
 joblib==1.5.3
 kiwisolver==1.4.7
 MarkupSafe==3.0.3
-matplotlib==3.9.4
+matplotlib
 numpy==2.0.2
 packaging==26.0
 pandas==2.3.3
@@ -24,8 +24,8 @@ pyparsing==3.3.2
 python-dateutil==2.9.0.post0
 pytz==2026.1.post1
 scikit-learn==1.6.1
-scipy==1.13.1
-seaborn==0.13.2
+scipy
+seaborn
 six==1.17.0
 threadpoolctl==3.6.0
 tzdata==2025.3
