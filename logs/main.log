@@ -1,0 +1,361 @@
+2026-04-04 11:42:01,379 - INFO - The shape of the data is : (7043, 21)
+2026-04-04 11:42:01,379 - INFO - customerID          0
+gender              0
+SeniorCitizen       0
+Partner             0
+Dependents          0
+tenure              0
+PhoneService        0
+MultipleLines       0
+InternetService     0
+OnlineSecurity      0
+OnlineBackup        0
+DeviceProtection    0
+TechSupport         0
+StreamingTV         0
+StreamingMovies     0
+Contract            0
+PaperlessBilling    0
+PaymentMethod       0
+MonthlyCharges      0
+TotalCharges        0
+Churn               0
+dtype: int64
+2026-04-04 11:42:01,379 - INFO - None
+2026-04-04 11:42:01,379 - INFO - After adding Telecom_Services column :(7043, 22) 
+ Index(['customerID', 'gender', 'SeniorCitizen', 'Partner', 'Dependents',
+       'tenure', 'PhoneService', 'MultipleLines', 'InternetService',
+       'OnlineSecurity', 'OnlineBackup', 'DeviceProtection', 'TechSupport',
+       'StreamingTV', 'StreamingMovies', 'Contract', 'PaperlessBilling',
+       'PaymentMethod', 'MonthlyCharges', 'TotalCharges', 'Churn',
+       'Telecom_Services'],
+      dtype='object')
+2026-04-04 11:42:01,379 - INFO - ['jio' 'Vi' 'airtel' 'BSNL']
+2026-04-04 11:42:01,396 - INFO - The null values:
+2026-04-04 11:42:01,396 - INFO - 11
+2026-04-04 11:42:01,396 - INFO -  shape of X_train: (5634, 21) 
+ coluumns:Index(['customerID', 'gender', 'SeniorCitizen', 'Partner', 'Dependents',
+       'tenure', 'PhoneService', 'MultipleLines', 'InternetService',
+       'OnlineSecurity', 'OnlineBackup', 'DeviceProtection', 'TechSupport',
+       'StreamingTV', 'StreamingMovies', 'Contract', 'PaperlessBilling',
+       'PaymentMethod', 'MonthlyCharges', 'TotalCharges', 'Telecom_Services'],
+      dtype='object')
+2026-04-04 11:42:01,396 - INFO -  Self.X_train : 5634 : self.y_train :5634 
+ Total training data : (5634, 21)
+2026-04-04 11:42:01,396 - INFO - self.X_test  : 1409 : self.y_train : 1409 
+ Total training data : (1409, 21)
+2026-04-04 11:42:01,396 - INFO - Before Handling NUll values X_train Column names and shape : (5634, 21) 
+ : Index(['customerID', 'gender', 'SeniorCitizen', 'Partner', 'Dependents',
+       'tenure', 'PhoneService', 'MultipleLines', 'InternetService',
+       'OnlineSecurity', 'OnlineBackup', 'DeviceProtection', 'TechSupport',
+       'StreamingTV', 'StreamingMovies', 'Contract', 'PaperlessBilling',
+       'PaymentMethod', 'MonthlyCharges', 'TotalCharges', 'Telecom_Services'],
+      dtype='object') : customerID           0
+gender               0
+SeniorCitizen        0
+Partner              0
+Dependents           0
+tenure               0
+PhoneService         0
+MultipleLines        0
+InternetService      0
+OnlineSecurity       0
+OnlineBackup         0
+DeviceProtection     0
+TechSupport          0
+StreamingTV          0
+StreamingMovies      0
+Contract             0
+PaperlessBilling     0
+PaymentMethod        0
+MonthlyCharges       0
+TotalCharges        10
+Telecom_Services     0
+dtype: int64
+2026-04-04 11:42:01,396 - INFO - Before Handling NUll values X_test Column names and shape : (1409, 21) 
+ : Index(['customerID', 'gender', 'SeniorCitizen', 'Partner', 'Dependents',
+       'tenure', 'PhoneService', 'MultipleLines', 'InternetService',
+       'OnlineSecurity', 'OnlineBackup', 'DeviceProtection', 'TechSupport',
+       'StreamingTV', 'StreamingMovies', 'Contract', 'PaperlessBilling',
+       'PaymentMethod', 'MonthlyCharges', 'TotalCharges', 'Telecom_Services'],
+      dtype='object') : customerID          0
+gender              0
+SeniorCitizen       0
+Partner             0
+Dependents          0
+tenure              0
+PhoneService        0
+MultipleLines       0
+InternetService     0
+OnlineSecurity      0
+OnlineBackup        0
+DeviceProtection    0
+TechSupport         0
+StreamingTV         0
+StreamingMovies     0
+Contract            0
+PaperlessBilling    0
+PaymentMethod       0
+MonthlyCharges      0
+TotalCharges        1
+Telecom_Services    0
+dtype: int64
+2026-04-04 11:42:01,426 - INFO - After Handling NUll values X_train Column names and shape : (5634, 21) 
+ : Index(['customerID', 'gender', 'SeniorCitizen', 'Partner', 'Dependents',
+       'tenure', 'PhoneService', 'MultipleLines', 'InternetService',
+       'OnlineSecurity', 'OnlineBackup', 'DeviceProtection', 'TechSupport',
+       'StreamingTV', 'StreamingMovies', 'Contract', 'PaperlessBilling',
+       'PaymentMethod', 'MonthlyCharges', 'Telecom_Services',
+       'TotalCharges_replaced'],
+      dtype='object') : customerID               0
+gender                   0
+SeniorCitizen            0
+Partner                  0
+Dependents               0
+tenure                   0
+PhoneService             0
+MultipleLines            0
+InternetService          0
+OnlineSecurity           0
+OnlineBackup             0
+DeviceProtection         0
+TechSupport              0
+StreamingTV              0
+StreamingMovies          0
+Contract                 0
+PaperlessBilling         0
+PaymentMethod            0
+MonthlyCharges           0
+Telecom_Services         0
+TotalCharges_replaced    0
+dtype: int64
+2026-04-04 11:42:01,426 - INFO - After Handling NUll values X_test Column names and shape : (1409, 21) 
+ : Index(['customerID', 'gender', 'SeniorCitizen', 'Partner', 'Dependents',
+       'tenure', 'PhoneService', 'MultipleLines', 'InternetService',
+       'OnlineSecurity', 'OnlineBackup', 'DeviceProtection', 'TechSupport',
+       'StreamingTV', 'StreamingMovies', 'Contract', 'PaperlessBilling',
+       'PaymentMethod', 'MonthlyCharges', 'Telecom_Services',
+       'TotalCharges_replaced'],
+      dtype='object') : customerID               0
+gender                   0
+SeniorCitizen            0
+Partner                  0
+Dependents               0
+tenure                   0
+PhoneService             0
+MultipleLines            0
+InternetService          0
+OnlineSecurity           0
+OnlineBackup             0
+DeviceProtection         0
+TechSupport              0
+StreamingTV              0
+StreamingMovies          0
+Contract                 0
+PaperlessBilling         0
+PaymentMethod            0
+MonthlyCharges           0
+Telecom_Services         0
+TotalCharges_replaced    0
+dtype: int64
+2026-04-04 11:42:01,426 - INFO - X_train_num_cols:
+ Index(['SeniorCitizen', 'tenure', 'MonthlyCharges', 'TotalCharges_replaced'], dtype='object') : (5634, 4)
+2026-04-04 11:42:01,426 - INFO - X_test_num_cols:
+ Index(['SeniorCitizen', 'tenure', 'MonthlyCharges', 'TotalCharges_replaced'], dtype='object') : (1409, 4)
+2026-04-04 11:42:01,426 - INFO - X_train_cat_cols:
+ Index(['customerID', 'gender', 'Partner', 'Dependents', 'PhoneService',
+       'MultipleLines', 'InternetService', 'OnlineSecurity', 'OnlineBackup',
+       'DeviceProtection', 'TechSupport', 'StreamingTV', 'StreamingMovies',
+       'Contract', 'PaperlessBilling', 'PaymentMethod', 'Telecom_Services'],
+      dtype='object') : (5634, 17)
+2026-04-04 11:42:01,426 - INFO - X_test_cat_cols:
+ Index(['customerID', 'gender', 'Partner', 'Dependents', 'PhoneService',
+       'MultipleLines', 'InternetService', 'OnlineSecurity', 'OnlineBackup',
+       'DeviceProtection', 'TechSupport', 'StreamingTV', 'StreamingMovies',
+       'Contract', 'PaperlessBilling', 'PaymentMethod', 'Telecom_Services'],
+      dtype='object') : (1409, 17)
+2026-04-04 11:42:01,426 - INFO - Before vairable transformation train column names : Index(['SeniorCitizen', 'tenure', 'MonthlyCharges', 'TotalCharges_replaced'], dtype='object')
+2026-04-04 11:42:01,426 - INFO - Before variable transformation test column names : Index(['SeniorCitizen', 'tenure', 'MonthlyCharges', 'TotalCharges_replaced'], dtype='object')
+2026-04-04 11:42:01,469 - INFO - After vairable transformation train column names : Index(['SeniorCitizen', 'tenure_yeo', 'MonthlyCharges_box',
+       'TotalCharges_replaced_yeo'],
+      dtype='object') and shape : (5634, 4)
+2026-04-04 11:42:01,469 - INFO - After variable transformation test column names : Index(['SeniorCitizen', 'tenure_yeo', 'MonthlyCharges_box',
+       'TotalCharges_replaced_yeo'],
+      dtype='object') and shape : (1409, 4)
+2026-04-04 11:42:01,469 - INFO - ---------------------Outlier Handling-----------------------------
+2026-04-04 11:42:01,469 - INFO - Before outlier training data shape : (5634, 4) 
+ Before outlier traning data columns : Index(['SeniorCitizen', 'tenure_yeo', 'MonthlyCharges_box',
+       'TotalCharges_replaced_yeo'],
+      dtype='object')
+2026-04-04 11:42:01,469 - INFO - Before outlier testing data shape : (1409, 4) 
+ Before outlier testing data columns : Index(['SeniorCitizen', 'tenure_yeo', 'MonthlyCharges_box',
+       'TotalCharges_replaced_yeo'],
+      dtype='object')
+2026-04-04 11:42:01,475 - INFO - After outlier training data shape : (5634, 4) 
+ After outlier traning data columns : Index(['SeniorCitizen', 'tenure_yeo_tri', 'MonthlyCharges_box_CapMS',
+       'TotalCharges_replaced_yeo_CapMS'],
+      dtype='object')
+2026-04-04 11:42:01,475 - INFO - After outlier testing data shape : (1409, 4) 
+ After outlier testing data columns : Index(['SeniorCitizen', 'tenure_yeo_tri', 'MonthlyCharges_box_CapMS',
+       'TotalCharges_replaced_yeo_CapMS'],
+      dtype='object')
+2026-04-04 11:42:01,475 - INFO - ---------------------Feature Selection-----------------------------
+2026-04-04 11:42:01,475 - INFO - Before feature selection training(X_train) data shape : (5634, 4) 
+ Before feature selection training(X_train) data columns : Index(['SeniorCitizen', 'tenure_yeo_tri', 'MonthlyCharges_box_CapMS',
+       'TotalCharges_replaced_yeo_CapMS'],
+      dtype='object')
+2026-04-04 11:42:01,475 - INFO - Before feature selection testing(X_test) data shape : (1409, 4) 
+ Before feature selection testing(X_test) data columns : Index(['SeniorCitizen', 'tenure_yeo_tri', 'MonthlyCharges_box_CapMS',
+       'TotalCharges_replaced_yeo_CapMS'],
+      dtype='object')
+2026-04-04 11:42:01,485 - INFO - After feature selection training(X_train) data shape : (5634, 4) 
+ After feature selection training(X_train) data columns : Index(['SeniorCitizen', 'tenure_yeo_tri', 'MonthlyCharges_box_CapMS',
+       'TotalCharges_replaced_yeo_CapMS'],
+      dtype='object')
+2026-04-04 11:42:01,485 - INFO - After feature selection testing(X_test) data shape : (1409, 4) 
+ After feature selection testing(X_test) data columns : Index(['SeniorCitizen', 'tenure_yeo_tri', 'MonthlyCharges_box_CapMS',
+       'TotalCharges_replaced_yeo_CapMS'],
+      dtype='object')
+2026-04-04 11:42:01,485 - INFO - ---------------------Cat to Num Handling--------------------------
+2026-04-04 11:42:01,485 - INFO - Before Conversion the X_train categorical Columns are: Index(['customerID', 'gender', 'Partner', 'Dependents', 'PhoneService',
+       'MultipleLines', 'InternetService', 'OnlineSecurity', 'OnlineBackup',
+       'DeviceProtection', 'TechSupport', 'StreamingTV', 'StreamingMovies',
+       'Contract', 'PaperlessBilling', 'PaymentMethod', 'Telecom_Services'],
+      dtype='object') and shape : (5634, 17)
+2026-04-04 11:42:01,485 - INFO - Before conversion the X_test Categorical columns are: Index(['customerID', 'gender', 'Partner', 'Dependents', 'PhoneService',
+       'MultipleLines', 'InternetService', 'OnlineSecurity', 'OnlineBackup',
+       'DeviceProtection', 'TechSupport', 'StreamingTV', 'StreamingMovies',
+       'Contract', 'PaperlessBilling', 'PaymentMethod', 'Telecom_Services'],
+      dtype='object') and shape : (1409, 17)
+2026-04-04 11:42:01,507 - INFO - After Conversion the X_train categorical Columns are: Index(['gender_Male', 'Partner_Yes', 'Dependents_Yes', 'PhoneService_ordinal',
+       'MultipleLines_ordinal', 'InternetService_ordinal',
+       'OnlineSecurity_ordinal', 'OnlineBackup_ordinal',
+       'DeviceProtection_ordinal', 'TechSupport_ordinal',
+       'StreamingTV_ordinal', 'StreamingMovies_ordinal', 'Contract_ordinal',
+       'PaperlessBilling_ordinal', 'PaymentMethod_ordinal',
+       'Telecom_Services_ordinal'],
+      dtype='object') and shape : (5634, 16)
+2026-04-04 11:42:01,507 - INFO - After conversion the X_test Categorical columns are: Index(['gender_Male', 'Partner_Yes', 'Dependents_Yes', 'PhoneService_ordinal',
+       'MultipleLines_ordinal', 'InternetService_ordinal',
+       'OnlineSecurity_ordinal', 'OnlineBackup_ordinal',
+       'DeviceProtection_ordinal', 'TechSupport_ordinal',
+       'StreamingTV_ordinal', 'StreamingMovies_ordinal', 'Contract_ordinal',
+       'PaperlessBilling_ordinal', 'PaymentMethod_ordinal',
+       'Telecom_Services_ordinal'],
+      dtype='object') and shape : (1409, 16)
+2026-04-04 11:42:01,507 - INFO - ----------------------Combining the Data(categorical and numerical)-----------------------------
+2026-04-04 11:42:01,507 - INFO - The complete training data after combining : (5634, 20)
+2026-04-04 11:42:01,507 - INFO - the training data columns are : Index(['SeniorCitizen', 'tenure_yeo_tri', 'MonthlyCharges_box_CapMS',
+       'TotalCharges_replaced_yeo_CapMS', 'gender_Male', 'Partner_Yes',
+       'Dependents_Yes', 'PhoneService_ordinal', 'MultipleLines_ordinal',
+       'InternetService_ordinal', 'OnlineSecurity_ordinal',
+       'OnlineBackup_ordinal', 'DeviceProtection_ordinal',
+       'TechSupport_ordinal', 'StreamingTV_ordinal', 'StreamingMovies_ordinal',
+       'Contract_ordinal', 'PaperlessBilling_ordinal', 'PaymentMethod_ordinal',
+       'Telecom_Services_ordinal'],
+      dtype='object')
+2026-04-04 11:42:01,522 - INFO - SeniorCitizen                      0
+tenure_yeo_tri                     0
+MonthlyCharges_box_CapMS           0
+TotalCharges_replaced_yeo_CapMS    0
+gender_Male                        0
+Partner_Yes                        0
+Dependents_Yes                     0
+PhoneService_ordinal               0
+MultipleLines_ordinal              0
+InternetService_ordinal            0
+OnlineSecurity_ordinal             0
+OnlineBackup_ordinal               0
+DeviceProtection_ordinal           0
+TechSupport_ordinal                0
+StreamingTV_ordinal                0
+StreamingMovies_ordinal            0
+Contract_ordinal                   0
+PaperlessBilling_ordinal           0
+PaymentMethod_ordinal              0
+Telecom_Services_ordinal           0
+dtype: int64
+2026-04-04 11:42:01,522 - INFO - The complete testing data after combining : (1409, 20)
+2026-04-04 11:42:01,522 - INFO - the testing data columns are : Index(['SeniorCitizen', 'tenure_yeo_tri', 'MonthlyCharges_box_CapMS',
+       'TotalCharges_replaced_yeo_CapMS', 'gender_Male', 'Partner_Yes',
+       'Dependents_Yes', 'PhoneService_ordinal', 'MultipleLines_ordinal',
+       'InternetService_ordinal', 'OnlineSecurity_ordinal',
+       'OnlineBackup_ordinal', 'DeviceProtection_ordinal',
+       'TechSupport_ordinal', 'StreamingTV_ordinal', 'StreamingMovies_ordinal',
+       'Contract_ordinal', 'PaperlessBilling_ordinal', 'PaymentMethod_ordinal',
+       'Telecom_Services_ordinal'],
+      dtype='object')
+2026-04-04 11:42:01,522 - INFO - SeniorCitizen                      0
+tenure_yeo_tri                     0
+MonthlyCharges_box_CapMS           0
+TotalCharges_replaced_yeo_CapMS    0
+gender_Male                        0
+Partner_Yes                        0
+Dependents_Yes                     0
+PhoneService_ordinal               0
+MultipleLines_ordinal              0
+InternetService_ordinal            0
+OnlineSecurity_ordinal             0
+OnlineBackup_ordinal               0
+DeviceProtection_ordinal           0
+TechSupport_ordinal                0
+StreamingTV_ordinal                0
+StreamingMovies_ordinal            0
+Contract_ordinal                   0
+PaperlessBilling_ordinal           0
+PaymentMethod_ordinal              0
+Telecom_Services_ordinal           0
+dtype: int64
+2026-04-04 11:42:01,522 - INFO - -----------------------Data Balancing------------------------------
+2026-04-04 11:42:01,522 - INFO -  Before Data balancing The churn customer's(1) rows are : 1496
+2026-04-04 11:42:01,522 - INFO -  Before Data balancing The Non churn customer's(0) rows are : 4138
+2026-04-04 11:42:01,522 - INFO - Before Data balancing Training data shape : (5634, 20)
+2026-04-04 11:42:01,522 - INFO - SeniorCitizen                      0
+tenure_yeo_tri                     0
+MonthlyCharges_box_CapMS           0
+TotalCharges_replaced_yeo_CapMS    0
+gender_Male                        0
+Partner_Yes                        0
+Dependents_Yes                     0
+PhoneService_ordinal               0
+MultipleLines_ordinal              0
+InternetService_ordinal            0
+OnlineSecurity_ordinal             0
+OnlineBackup_ordinal               0
+DeviceProtection_ordinal           0
+TechSupport_ordinal                0
+StreamingTV_ordinal                0
+StreamingMovies_ordinal            0
+Contract_ordinal                   0
+PaperlessBilling_ordinal           0
+PaymentMethod_ordinal              0
+Telecom_Services_ordinal           0
+dtype: int64
+2026-04-04 11:42:03,165 - INFO - After Data balancing The churn customer's(1) rows are : 4138
+2026-04-04 11:42:03,165 - INFO - After Data balancing The Non churn customer's(0) rows are : 4138
+2026-04-04 11:42:03,165 - INFO - After Data balancing Training data shape : (8276, 20)
+2026-04-04 11:42:03,165 - INFO - SeniorCitizen                      0
+tenure_yeo_tri                     0
+MonthlyCharges_box_CapMS           0
+TotalCharges_replaced_yeo_CapMS    0
+gender_Male                        0
+Partner_Yes                        0
+Dependents_Yes                     0
+PhoneService_ordinal               0
+MultipleLines_ordinal              0
+InternetService_ordinal            0
+OnlineSecurity_ordinal             0
+OnlineBackup_ordinal               0
+DeviceProtection_ordinal           0
+TechSupport_ordinal                0
+StreamingTV_ordinal                0
+StreamingMovies_ordinal            0
+Contract_ordinal                   0
+PaperlessBilling_ordinal           0
+PaymentMethod_ordinal              0
+Telecom_Services_ordinal           0
+dtype: int64
+2026-04-04 11:42:03,165 - INFO - ---------------------Feature scaling------------------------------
+2026-04-04 11:42:03,165 - INFO - Before feature scaling training data shape : (8276, 20)
+2026-04-04 11:42:03,165 - INFO - Before feature scaling testing data shape : (1409, 20)
+2026-04-04 11:42:03,347 - INFO -  Feature scaling completed Successfully 

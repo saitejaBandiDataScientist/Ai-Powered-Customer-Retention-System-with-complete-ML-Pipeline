@@ -1,0 +1,14 @@
+2026-04-04 11:42:01,426 - INFO - ===================  Variable Transformation  =============================
+2026-04-04 11:42:01,426 - INFO - Before apply Train numerical columns and shapes variable Transformation 
+ : Index(['SeniorCitizen', 'tenure', 'MonthlyCharges', 'TotalCharges_replaced'], dtype='object') : (5634, 4)
+2026-04-04 11:42:01,426 - INFO - Before apply Test numerical columns and shapes variable Transformation 
+ : Index(['SeniorCitizen', 'tenure', 'MonthlyCharges', 'TotalCharges_replaced'], dtype='object') : (1409, 4)
+2026-04-04 11:42:01,426 - INFO - SeniorCitizen column is binary column( 0 or 1)
+2026-04-04 11:42:01,467 - INFO - After apply Train numerical columns and shapes variable Transformation 
+ : Index(['SeniorCitizen', 'tenure_yeo', 'MonthlyCharges_box',
+       'TotalCharges_replaced_yeo'],
+      dtype='object') : (5634, 4)
+2026-04-04 11:42:01,467 - INFO - After apply Test numerical columns and shapes variable Transformation 
+ : Index(['SeniorCitizen', 'tenure_yeo', 'MonthlyCharges_box',
+       'TotalCharges_replaced_yeo'],
+      dtype='object') : (1409, 4)

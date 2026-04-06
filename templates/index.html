@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>AI Powered Customer Retention System</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&family=Syne:wght@700;800&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --bg:#0d1117;
+  --surface:#161c27;
+  --surface2:#1c2436;
+  --card:#1e2738;
+  --card2:#242f44;
+  --border:rgba(255,255,255,.07);
+  --border2:rgba(255,255,255,.12);
+  --border3:rgba(255,255,255,.18);
+
+  --gold:#f0a832;
+  --gold2:#d4880a;
+  --gold-dim:rgba(240,168,50,.12);
+  --gold-glow:rgba(240,168,50,.2);
+
+  --blue:#4a8eff;
+  --blue-dim:rgba(74,142,255,.12);
+  --cyan:#38c9e0;
+  --violet:#9b7dff;
+
+  --red:#ff5a5a;
+  --red-dim:rgba(255,90,90,.14);
+  --amber:#ffb547;
+  --amber-dim:rgba(255,181,71,.14);
+  --emerald:#34d399;
+  --emerald-dim:rgba(52,211,153,.14);
+
+  --text:#e8edf5;
+  --muted:#8895a7;
+  --muted2:#5c6a7a;
+
+  --font:'DM Sans',sans-serif;
+  --mono:'DM Mono',monospace;
+  --display:'Syne',sans-serif;
+  --r-sm:6px;--r-md:10px;--r-lg:14px;--r-xl:18px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:var(--bg)}
+body{color:var(--text);font-family:var(--font);display:flex;flex-direction:column;overflow:hidden}
+
+/* HEADER */
+header{
+  flex-shrink:0;height:62px;
+  background:var(--surface);
+  border-bottom:1px solid var(--border2);
+  padding:0 24px;display:flex;align-items:center;justify-content:space-between;
+  position:relative;z-index:50;
+}
+header::after{
+  content:'';position:absolute;bottom:-1px;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent 0%,var(--gold) 35%,var(--gold2) 65%,transparent 100%);
+  opacity:.55;
+}
+.hlogo{display:flex;align-items:center;gap:14px}
+.hicon{
+  width:38px;height:38px;border-radius:var(--r-md);
+  background:linear-gradient(135deg,#f0a832 0%,#d4880a 100%);
+  display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;
+  box-shadow:0 0 18px rgba(240,168,50,.3);
+}
+.htitle{font-family:var(--display);font-size:.92rem;font-weight:800;letter-spacing:-.2px;color:var(--text);line-height:1.2}
+.hsub{font-size:.57rem;color:var(--muted);letter-spacing:.8px;text-transform:uppercase;font-weight:400;margin-top:1px}
+.hbadges{display:flex;gap:7px;align-items:center}
+.hb{font-family:var(--mono);font-size:.6rem;padding:3px 10px;border-radius:20px;
+  background:var(--card2);border:1px solid var(--border2);color:var(--muted)}
+.hb.live{color:var(--gold);border-color:rgba(240,168,50,.35);background:var(--gold-dim)}
+.live-dot{display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--gold);margin-right:5px;animation:blink 1.6s infinite}
+
+/* LAYOUT */
+.main{flex:1;display:flex;overflow:hidden;min-height:0}
+
+/* LEFT */
+.left{width:308px;flex-shrink:0;background:var(--surface);border-right:1px solid var(--border2);display:flex;flex-direction:column;overflow:hidden}
+.pane-hd{padding:11px 15px;font-size:.58rem;font-weight:600;letter-spacing:1.3px;text-transform:uppercase;
+  color:var(--muted);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:6px}
+.pane-dot{width:4px;height:4px;border-radius:50%;background:var(--gold)}
+
+/* SIM CARDS */
+.sim-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;padding:12px}
+.sc{
+  border-radius:var(--r-lg);border:1px solid var(--border2);padding:12px 11px 10px;cursor:pointer;
+  transition:all .22s cubic-bezier(.2,.8,.2,1);background:var(--card);position:relative;overflow:hidden;
+}
+.sc::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(240,168,50,.06) 0%,transparent 60%);
+  opacity:0;transition:opacity .22s;
+}
+.sc:hover{border-color:var(--border3);transform:translateY(-1px)}
+.sc:hover::before{opacity:1}
+.sc.active{
+  border-color:rgba(240,168,50,.55);
+  box-shadow:0 0 20px -5px var(--gold-glow),inset 0 0 20px -10px rgba(240,168,50,.08);
+}
+.sc.active::before{opacity:1}
+.sc-logo{width:46px;height:46px;margin-bottom:8px;object-fit:contain;border-radius:var(--r-sm);
+  filter:drop-shadow(0 1px 3px rgba(0,0,0,.4))}
+.sc-name{font-size:.76rem;font-weight:600;color:var(--text)}
+.sc-desc{font-size:.58rem;color:var(--muted);margin-top:2px}
+.sc-pip{position:absolute;top:9px;right:9px;width:6px;height:6px;border-radius:50%;
+  background:var(--gold);opacity:0;transition:opacity .2s}
+.sc.active .sc-pip{opacity:1;animation:pulse-pip 1.8s infinite}
+
+/* RIGHT */
+.right{flex:1;overflow-y:auto;padding:20px 24px 130px;min-width:0;background:var(--bg)}
+.right::-webkit-scrollbar{width:3px}
+.right::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px}
+
+.sec-hd{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.sec-title{font-family:var(--display);font-size:.95rem;font-weight:800;letter-spacing:-.2px;color:var(--text)}
+.feat-pill{
+  font-size:.58rem;font-weight:600;letter-spacing:.7px;text-transform:uppercase;
+  padding:3px 10px;border-radius:20px;
+  background:var(--gold-dim);color:var(--gold);border:1px solid rgba(240,168,50,.3);
+}
+
+/* GROUPS */
+.groups{display:flex;flex-direction:column;gap:14px}
+.fg{background:var(--surface);border:1px solid var(--border2);border-radius:var(--r-xl);overflow:hidden}
+.gh{
+  padding:9px 15px;background:var(--surface2);border-bottom:1px solid var(--border);
+  font-size:.58rem;font-weight:600;letter-spacing:1.1px;text-transform:uppercase;color:var(--muted);
+  display:flex;align-items:center;gap:7px
+}
+.gh-bar{height:12px;width:2px;border-radius:1px;opacity:.9}
+.gh-ico{font-size:12px}
+
+.fields{display:grid;grid-template-columns:repeat(auto-fill,minmax(205px,1fr))}
+.fi{padding:11px 14px;border-bottom:1px solid var(--border);border-right:1px solid var(--border);transition:background .12s}
+.fi:hover{background:rgba(255,255,255,.018)}
+.fi-lbl{font-size:.57rem;font-weight:600;letter-spacing:.6px;text-transform:uppercase;
+  color:var(--muted);margin-bottom:5px;display:flex;align-items:center;gap:4px;flex-wrap:wrap}
+.ft{font-family:var(--mono);font-size:.52rem;color:var(--violet);background:rgba(155,125,255,.12);
+  padding:1px 5px;border-radius:3px;border:1px solid rgba(155,125,255,.25)}
+.fr{font-family:var(--mono);font-size:.52rem;color:var(--cyan);background:rgba(56,201,224,.1);
+  padding:1px 5px;border-radius:3px;border:1px solid rgba(56,201,224,.22)}
+.fc{
+  width:100%;background:var(--card2);border:1px solid var(--border2);border-radius:var(--r-sm);
+  color:var(--text);font-family:var(--font);font-size:.76rem;padding:6px 9px;
+  outline:none;transition:border-color .2s,box-shadow .2s;appearance:none;-webkit-appearance:none;
+}
+.fc:focus{border-color:rgba(240,168,50,.5);box-shadow:0 0 0 3px rgba(240,168,50,.1)}
+select.fc{
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%238895a7' stroke-width='1.4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 9px center;padding-right:24px;cursor:pointer;
+}
+.fi-hint{display:none}
+
+/* BOTTOM BAR */
+.bottom-bar{
+  position:fixed;bottom:0;right:0;left:308px;
+  padding:12px 24px 14px;display:flex;gap:10px;align-items:center;z-index:40;
+  background:var(--surface);border-top:1px solid var(--border2);
+  box-shadow:0 -8px 24px rgba(0,0,0,.35);
+}
+.btn-reset{
+  padding:10px 16px;border-radius:var(--r-md);background:transparent;
+  border:1px solid var(--border2);color:var(--muted);font-family:var(--font);
+  font-size:.76rem;font-weight:500;cursor:pointer;transition:all .18s;flex-shrink:0;
+}
+.btn-reset:hover{color:var(--text);border-color:var(--border3);background:var(--card)}
+.btn-predict{
+  flex:1;padding:11px;border-radius:var(--r-md);
+  background:linear-gradient(135deg,#f0a832 0%,#c97a08 100%);
+  border:none;color:#0d1117;font-family:var(--display);font-size:.84rem;font-weight:800;
+  cursor:pointer;transition:all .2s;
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  box-shadow:0 4px 18px rgba(240,168,50,.3);letter-spacing:.2px;
+}
+.btn-predict:hover{filter:brightness(1.07);transform:translateY(-1px);box-shadow:0 6px 22px rgba(240,168,50,.42)}
+.btn-predict:active{transform:translateY(0);filter:brightness(.96)}
+.btn-spinner{display:none;width:16px;height:16px;border-radius:50%;
+  border:2px solid rgba(13,17,23,.25);border-top-color:#0d1117;animation:spin .65s linear infinite}
+.btn-predict.loading .btn-text{display:none}
+.btn-predict.loading .btn-spinner{display:block}
+
+/* RESULT OVERLAY */
+.rov{
+  position:fixed;inset:0;z-index:999;background:rgba(7,10,18,.82);backdrop-filter:blur(10px);
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;pointer-events:none;transition:opacity .28s;
+}
+.rov.show{opacity:1;pointer-events:all}
+.rc{
+  background:var(--surface);border:1px solid var(--border2);border-radius:var(--r-xl);
+  padding:28px 30px 24px;width:420px;max-width:94vw;
+  transform:scale(.92) translateY(18px);transition:transform .35s cubic-bezier(.2,.7,0,1.2);
+  box-shadow:0 24px 64px rgba(0,0,0,.55),0 0 0 1px rgba(240,168,50,.08);
+}
+.rov.show .rc{transform:scale(1) translateY(0)}
+.rc-top{display:flex;align-items:center;gap:13px;margin-bottom:18px}
+.rc-icon{width:50px;height:50px;border-radius:var(--r-lg);flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;font-size:22px}
+.rc-icon.churn{background:var(--red-dim);border:1px solid rgba(255,90,90,.2)}
+.rc-icon.retain{background:var(--emerald-dim);border:1px solid rgba(52,211,153,.2)}
+.rc-ttl{font-family:var(--display);font-size:1.15rem;font-weight:800;letter-spacing:-.2px;color:var(--text)}
+.rc-sim{font-size:.62rem;color:var(--muted);margin-top:3px;font-family:var(--mono)}
+.rc-msg{font-size:.76rem;color:var(--muted);margin-bottom:18px;line-height:1.65}
+.risk-row{display:flex;align-items:center;gap:9px;margin-bottom:18px}
+.risk-lbl{font-size:.58rem;font-weight:600;letter-spacing:.7px;text-transform:uppercase;color:var(--muted2)}
+.risk-badge{display:inline-flex;align-items:center;gap:5px;padding:3px 12px;border-radius:20px;font-size:.67rem;font-weight:600}
+.rH{background:var(--red-dim);color:var(--red);border:1px solid rgba(255,90,90,.3)}
+.rM{background:var(--amber-dim);color:var(--amber);border:1px solid rgba(255,181,71,.3)}
+.rL{background:var(--emerald-dim);color:var(--emerald);border:1px solid rgba(52,211,153,.3)}
+.prob-row{display:flex;gap:12px;margin-bottom:20px}
+.pi{flex:1}
+.pi-lbl{font-size:.58rem;font-weight:600;letter-spacing:.6px;text-transform:uppercase;color:var(--muted2);margin-bottom:6px}
+.pi-track{height:5px;background:rgba(255,255,255,.07);border-radius:3px;overflow:hidden;margin-bottom:5px}
+.pi-fill{height:100%;border-radius:3px;width:0%;transition:width 1.1s cubic-bezier(.22,.68,0,1)}
+.pi-val{font-family:var(--mono);font-size:.78rem;font-weight:500;color:var(--text)}
+.rc-divider{height:1px;background:var(--border);margin-bottom:18px}
+.rc-close{
+  width:100%;padding:9px;border-radius:var(--r-md);
+  background:var(--card2);border:1px solid var(--border2);color:var(--muted);
+  font-family:var(--font);font-size:.76rem;font-weight:500;cursor:pointer;transition:all .18s;
+}
+.rc-close:hover{background:var(--card);color:var(--text);border-color:var(--border3)}
+
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.15}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes pulse-pip{0%,100%{box-shadow:0 0 0 0 rgba(240,168,50,.5)}60%{box-shadow:0 0 0 5px transparent}}
+
+@media(max-width:800px){
+  .main{flex-direction:column;overflow:auto}
+  .left{width:100%;flex-shrink:0}
+  .right{padding-bottom:130px}
+  .bottom-bar{left:0}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="hlogo">
+    <div class="hicon">🧠</div>
+    <div>
+      <div class="htitle">Customer Retention Intelligence</div>
+      <div class="hsub">Telecom Churn Analysis · Logistic Regression L2 · SAG Solver · v2.1</div>
+    </div>
+  </div>
+  <div class="hbadges">
+    <div class="hb live"><span class="live-dot"></span>Model Active</div>
+    <div class="hb">20 Features</div>
+    <div class="hb">v2.1</div>
+  </div>
+</header>
+
+<div class="main">
+
+  <!-- LEFT PANEL -->
+  <div class="left">
+    <div class="pane-hd"><div class="pane-dot"></div>Select SIM Operator</div>
+    <div class="sim-grid">
+
+      <div class="sc" id="sc-jio" onclick="pickSim('jio',0,this)">
+        <div class="sc-pip"></div>
+        <img src="{{ url_for('static', filename='images/jio.jpg') }}" alt="JIO" class="sc-logo">
+        <div class="sc-name">Reliance Jio</div>
+        <div class="sc-desc">4G / 5G · Ordinal 0</div>
+      </div>
+
+      <div class="sc" id="sc-airtel" onclick="pickSim('airtel',1,this)">
+        <div class="sc-pip"></div>
+        <img src="{{ url_for('static', filename='images/airtel.png') }}" alt="Airtel" class="sc-logo">
+        <div class="sc-name">Airtel</div>
+        <div class="sc-desc">4G / 5G · Ordinal 1</div>
+      </div>
+
+      <div class="sc" id="sc-vi" onclick="pickSim('vi',2,this)">
+        <div class="sc-pip"></div>
+        <img src="{{ url_for('static', filename='images/vi.jpg') }}" alt="Vi" class="sc-logo">
+        <div class="sc-name">Vodafone Idea</div>
+        <div class="sc-desc">4G · Ordinal 2</div>
+      </div>
+
+      <div class="sc" id="sc-bsnl" onclick="pickSim('bsnl',3,this)">
+        <div class="sc-pip"></div>
+        <img src="{{ url_for('static', filename='images/bsnl.webp') }}" alt="BSNL" class="sc-logo">
+        <div class="sc-name">BSNL</div>
+        <div class="sc-desc">2G / 4G · Ordinal 3</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- RIGHT PANEL -->
+  <div class="right">
+    <div class="sec-hd">
+      <div class="sec-title">Customer Feature Inputs</div>
+      <div class="feat-pill">20 Features · All Required</div>
+    </div>
+
+    <div class="groups">
+
+      <!-- DEMOGRAPHICS -->
+      <div class="fg">
+        <div class="gh"><div class="gh-bar" style="background:var(--blue)"></div><span class="gh-ico">👤</span>Demographics</div>
+        <div class="fields">
+          <div class="fi">
+            <div class="fi-lbl">Senior Citizen <span class="ft">binary</span><span class="fr">0–1</span></div>
+            <select class="fc" id="SeniorCitizen">
+              <option value="0">0 — Not a senior citizen</option>
+              <option value="1">1 — Senior citizen (≥ 65 yrs)</option>
+            </select>
+          </div>
+          <div class="fi">
+            <div class="fi-lbl">Gender Male <span class="ft">binary</span><span class="fr">0–1</span></div>
+            <select class="fc" id="gender_Male">
+              <option value="0">0 — Female</option>
+              <option value="1">1 — Male</option>
+            </select>
+          </div>
+          <div class="fi">
+            <div class="fi-lbl">Partner Yes <span class="ft">binary</span><span class="fr">0–1</span></div>
+            <select class="fc" id="Partner_Yes">
+              <option value="0">0 — No partner</option>
+              <option value="1">1 — Has a partner</option>
+            </select>
+          </div>
+          <div class="fi">
+            <div class="fi-lbl">Dependents Yes <span class="ft">binary</span><span class="fr">0–1</span></div>
+            <select class="fc" id="Dependents_Yes">
+              <option value="0">0 — No dependents</option>
+              <option value="1">1 — Has dependents</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- ACCOUNT & FINANCIAL -->
+      <div class="fg">
+        <div class="gh"><div class="gh-bar" style="background:var(--gold)"></div><span class="gh-ico">💳</span>Account &amp; Financial</div>
+        <div class="fields">
+          <div class="fi">
+            <div class="fi-lbl">Tenure Yeo-Johnson Tri <span class="ft">float</span></div>
+            <input type="number" step="0.01" class="fc" id="tenure_yeo_tri" placeholder="e.g. 1.42" value="1.0">
+          </div>
+          <div class="fi">
+            <div class="fi-lbl">Monthly Charges Box+CapMS <span class="ft">float</span></div>
+            <input type="number" step="0.01" class="fc" id="MonthlyCharges_box_CapMS" placeholder="e.g. 65.5" value="65.0">
+          </div>
+          <div class="fi">
+            <div class="fi-lbl">Total Charges Rep+Yeo+CapMS <span class="ft">float</span></div>
+            <input type="number" step="0.01" class="fc" id="TotalCharges_rep_yeo_CapMS" placeholder="e.g. 4.32" value="4.0">
+          </div>
+          <div class="fi">
+            <div class="fi-lbl">Contract Type <span class="ft">ordinal</span><span class="fr">0–2</span></div>
+            <select class="fc" id="Contract_ordinal">
+              <option value="0">0 — Month-to-Month (high churn risk)</option>
+              <option value="1">1 — One Year</option>
+              <option value="2">2 — Two Year (low churn risk)</option>
+            </select>
+          </div>
+          <div class="fi">
+            <div class="fi-lbl">Paperless Billing <span class="ft">ordinal</span><span class="fr">0–1</span></div>
+            <select class="fc" id="PaperlessBilling_ordinal">
+              <option value="0">0 — Paper billing (mailed)</option>
+              <option value="1">1 — Paperless / digital statements</option>
+            </select>
+          </div>
+          <div class="fi">
+            <div class="fi-lbl">Payment Method <span class="ft">ordinal</span><span class="fr">0–3</span></div>
+            <select class="fc" id="PaymentMethod_ordinal">
+              <option value="0">0 — Electronic Check</option>
+              <option value="1">1 — Mailed Check</option>
+              <option value="2">2 — Bank Transfer (Auto)</option>
+              <option value="3">3 — Credit Card (Auto)</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- PHONE SERVICES -->
+      <div class="fg">
+        <div class="gh"><div class="gh-bar" style="background:var(--amber)"></div><span class="gh-ico">📞</span>Phone Services</div>
+        <div class="fields">
+          <div class="fi">
+            <div class="fi-lbl">Phone Service <span class="ft">ordinal</span><span class="fr">0–1</span></div>
+            <select class="fc" id="PhoneService_ordinal">
+              <option value="0">0 — No phone service</option>
+              <option value="1">1 — Active phone service</option>
+            </select>
+          </div>
+          <div class="fi">
+            <div class="fi-lbl">Multiple Lines <span class="ft">ordinal</span><span class="fr">0–2</span></div>
+            <select class="fc" id="MultipleLines_ordinal">
+              <option value="0">0 — No phone service</option>
+              <option value="1">1 — Single line only</option>
+              <option value="2">2 — Multiple lines active</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- INTERNET & ADD-ONS -->
+      <div class="fg">
+        <div class="gh"><div class="gh-bar" style="background:var(--cyan)"></div><span class="gh-ico">🌐</span>Internet &amp; Add-on Services</div>
+        <div class="fields">
+          <div class="fi">
+            <div class="fi-lbl">Internet Service <span class="ft">ordinal</span><span class="fr">0–2</span></div>
+            <select class="fc" id="InternetService_ordinal">
+              <option value="0">0 — No internet service</option>
+              <option value="1">1 — DSL broadband</option>
+              <option value="2">2 — Fiber Optic (high risk)</option>
+            </select>
+          </div>
+          <div class="fi">
+            <div class="fi-lbl">Online Security <span class="ft">ordinal</span><span class="fr">0–2</span></div>
+            <select class="fc" id="OnlineSecurity_ordinal">
+              <option value="0">0 — No internet</option>
+              <option value="1">1 — Not subscribed</option>
+              <option value="2">2 — Subscribed</option>
+            </select>
+          </div>
+          <div class="fi">
+            <div class="fi-lbl">Online Backup <span class="ft">ordinal</span><span class="fr">0–2</span></div>
+            <select class="fc" id="OnlineBackup_ordinal">
+              <option value="0">0 — No internet</option>
+              <option value="1">1 — Not subscribed</option>
+              <option value="2">2 — Subscribed</option>
+            </select>
+          </div>
+          <div class="fi">
+            <div class="fi-lbl">Device Protection <span class="ft">ordinal</span><span class="fr">0–2</span></div>
+            <select class="fc" id="DeviceProtection_ordinal">
+              <option value="0">0 — No internet</option>
+              <option value="1">1 — Not subscribed</option>
+              <option value="2">2 — Subscribed</option>
+            </select>
+          </div>
+          <div class="fi">
+            <div class="fi-lbl">Tech Support <span class="ft">ordinal</span><span class="fr">0–2</span></div>
+            <select class="fc" id="TechSupport_ordinal">
+              <option value="0">0 — No internet</option>
+              <option value="1">1 — Not subscribed</option>
+              <option value="2">2 — Subscribed</option>
+            </select>
+          </div>
+          <div class="fi">
+            <div class="fi-lbl">Streaming TV <span class="ft">ordinal</span><span class="fr">0–2</span></div>
+            <select class="fc" id="StreamingTV_ordinal">
+              <option value="0">0 — No internet</option>
+              <option value="1">1 — Not subscribed</option>
+              <option value="2">2 — Subscribed</option>
+            </select>
+          </div>
+          <div class="fi">
+            <div class="fi-lbl">Streaming Movies <span class="ft">ordinal</span><span class="fr">0–2</span></div>
+            <select class="fc" id="StreamingMovies_ordinal">
+              <option value="0">0 — No internet</option>
+              <option value="1">1 — Not subscribed</option>
+              <option value="2">2 — Subscribed</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- SIM ORDINAL -->
+      <div class="fg">
+        <div class="gh"><div class="gh-bar" style="background:var(--violet)"></div><span class="gh-ico">📡</span>SIM Operator (auto-synced with left panel)</div>
+        <div class="fields">
+          <div class="fi">
+            <div class="fi-lbl">Sim Ordinal <span class="ft">ordinal</span><span class="fr">0–3</span></div>
+            <select class="fc" id="Sim_ordinal">
+              <option value="0">0 — Reliance Jio</option>
+              <option value="1">1 — Airtel</option>
+              <option value="2">2 — Vodafone Idea (Vi)</option>
+              <option value="3">3 — BSNL</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- BOTTOM BAR -->
+  <div class="bottom-bar">
+    <button class="btn-reset" onclick="resetAll()">↺ Reset</button>
+    <button class="btn-predict" id="btnPredict" onclick="runPrediction()">
+      <span class="btn-text">⚡ &nbsp;Run Churn Prediction</span>
+      <span class="btn-spinner"></span>
+    </button>
+  </div>
+
+</div>
+
+<!-- RESULT MODAL -->
+<div class="rov" id="rov" onclick="maybeClose(event)">
+  <div class="rc">
+    <div class="rc-top">
+      <div class="rc-icon retain" id="rIcoWrap"><span id="rIco">🔍</span></div>
+      <div>
+        <div class="rc-ttl" id="rTtl">Analysing…</div>
+        <div class="rc-sim" id="rSim">—</div>
+      </div>
+    </div>
+    <div class="rc-msg" id="rMsg">Running logistic regression inference…</div>
+    <div class="risk-row">
+      <div class="risk-lbl">Risk Level</div>
+      <div class="risk-badge rL" id="rRisk">—</div>
+    </div>
+    <div class="prob-row">
+      <div class="pi">
+        <div class="pi-lbl">Churn Probability</div>
+        <div class="pi-track"><div class="pi-fill" id="pCB" style="background:var(--red)"></div></div>
+        <div class="pi-val" id="pCV" style="color:var(--red)">—</div>
+      </div>
+      <div class="pi">
+        <div class="pi-lbl">Retention Probability</div>
+        <div class="pi-track"><div class="pi-fill" id="pRB" style="background:var(--emerald)"></div></div>
+        <div class="pi-val" id="pRV" style="color:var(--emerald)">—</div>
+      </div>
+    </div>
+    <div class="rc-divider"></div>
+    <button class="rc-close" onclick="closeResult()">Dismiss</button>
+  </div>
+</div>
+
+<script>
+const FEATURES=['SeniorCitizen','tenure_yeo_tri','MonthlyCharges_box_CapMS','TotalCharges_rep_yeo_CapMS',
+  'gender_Male','Partner_Yes','Dependents_Yes','PhoneService_ordinal','MultipleLines_ordinal',
+  'InternetService_ordinal','OnlineSecurity_ordinal','OnlineBackup_ordinal','DeviceProtection_ordinal',
+  'TechSupport_ordinal','StreamingTV_ordinal','StreamingMovies_ordinal',
+  'Contract_ordinal','PaperlessBilling_ordinal','PaymentMethod_ordinal','Sim_ordinal'];
+
+let selectedSim=null;
+const SIM_LABELS={jio:'Reliance Jio',airtel:'Airtel',vi:'Vodafone Idea (Vi)',bsnl:'BSNL'};
+
+function pickSim(name,ord,el){
+  document.querySelectorAll('.sc').forEach(c=>c.classList.remove('active'));
+  el.classList.add('active');
+  selectedSim=name;
+  document.getElementById('Sim_ordinal').value=ord;
+}
+
+function resetAll(){
+  document.querySelectorAll('.fc').forEach(el=>{if(el.tagName==='SELECT')el.selectedIndex=0;else el.value='';});
+  document.querySelectorAll('.sc').forEach(c=>c.classList.remove('active'));
+  selectedSim=null;
+}
+
+async function runPrediction(){
+  if(!selectedSim){alert('Please select a SIM operator from the left panel.');return;}
+  const btn=document.getElementById('btnPredict');btn.classList.add('loading');
+  const payload={sim_name:selectedSim};
+  FEATURES.forEach(f=>{const el=document.getElementById(f);payload[f]=el?parseFloat(el.value)||0:0;});
+  try{
+    const res=await fetch('/predict',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+    const data=await res.json();btn.classList.remove('loading');
+    if(data.success){showResult(data);}
+    else{alert('Error: '+data.error);}
+  }catch(e){
+    btn.classList.remove('loading');
+    const cp=+(Math.random()*100).toFixed(1);
+    showResult({success:true,churn:cp>50,churn_probability:cp,retain_probability:+(100-cp).toFixed(1),
+      risk_level:cp>70?'High':cp>40?'Medium':'Low',sim:SIM_LABELS[selectedSim],message:'Demo mode — Flask not running. Result is random.'});
+  }
+}
+
+function showResult(d){
+  if(!d.retain_probability)d.retain_probability=+(100-d.churn_probability).toFixed(1);
+  document.getElementById('rIco').textContent=d.churn?'🚨':'✅';
+  const iw=document.getElementById('rIcoWrap');iw.className='rc-icon '+(d.churn?'churn':'retain');
+  const ttl=document.getElementById('rTtl');
+  ttl.textContent=d.churn?'Churn Predicted':'Customer Retained';
+  ttl.style.color=d.churn?'var(--red)':'var(--emerald)';
+  document.getElementById('rSim').textContent=`SIM: ${SIM_LABELS[selectedSim]||d.sim} · LR L2 SAG`;
+  document.getElementById('rMsg').textContent=d.message||'Prediction complete.';
+  const rb=document.getElementById('rRisk');
+  rb.textContent='● '+d.risk_level+' Risk';rb.className='risk-badge r'+d.risk_level.charAt(0);
+  document.getElementById('pCV').textContent=d.churn_probability+'%';
+  document.getElementById('pRV').textContent=d.retain_probability+'%';
+  document.getElementById('rov').classList.add('show');
+  setTimeout(()=>{
+    document.getElementById('pCB').style.width=d.churn_probability+'%';
+    document.getElementById('pRB').style.width=d.retain_probability+'%';
+  },120);
+}
+function closeResult(){
+  document.getElementById('rov').classList.remove('show');
+  document.getElementById('pCB').style.width='0%';document.getElementById('pRB').style.width='0%';
+}
+function maybeClose(e){if(e.target===document.getElementById('rov'))closeResult();}
+</script>
+</body>
+</html>

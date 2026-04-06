@@ -1,0 +1,39 @@
+2026-04-04 11:42:01,485 - INFO - Before applying categorical_to_numeric the X_train categorical columns are: Index(['customerID', 'gender', 'Partner', 'Dependents', 'PhoneService',
+       'MultipleLines', 'InternetService', 'OnlineSecurity', 'OnlineBackup',
+       'DeviceProtection', 'TechSupport', 'StreamingTV', 'StreamingMovies',
+       'Contract', 'PaperlessBilling', 'PaymentMethod', 'Telecom_Services'],
+      dtype='object') and shape is : (5634, 17)
+2026-04-04 11:42:01,485 - INFO - Before applying categorical_to_numeric the X_test categorical columns are: Index(['customerID', 'gender', 'Partner', 'Dependents', 'PhoneService',
+       'MultipleLines', 'InternetService', 'OnlineSecurity', 'OnlineBackup',
+       'DeviceProtection', 'TechSupport', 'StreamingTV', 'StreamingMovies',
+       'Contract', 'PaperlessBilling', 'PaymentMethod', 'Telecom_Services'],
+      dtype='object') and shape is : (1409, 17)
+2026-04-04 11:42:01,487 - INFO - The CustomerId column will be dropped from the categorical columns
+2026-04-04 11:42:01,487 - INFO - since The gender, partner and  Dependents are Nominal Columns. therefore OneHotEncoder will be applied 
+2026-04-04 11:42:01,498 - INFO - After applying One hot Encoding the X_train columns are: Index(['PhoneService', 'MultipleLines', 'InternetService', 'OnlineSecurity',
+       'OnlineBackup', 'DeviceProtection', 'TechSupport', 'StreamingTV',
+       'StreamingMovies', 'Contract', 'PaperlessBilling', 'PaymentMethod',
+       'Telecom_Services', 'gender_Male', 'Partner_Yes', 'Dependents_Yes'],
+      dtype='object') and shape : (5634, 16)
+2026-04-04 11:42:01,498 - INFO - After applying One Hot Encoding the X_test columns are: Index(['PhoneService', 'MultipleLines', 'InternetService', 'OnlineSecurity',
+       'OnlineBackup', 'DeviceProtection', 'TechSupport', 'StreamingTV',
+       'StreamingMovies', 'Contract', 'PaperlessBilling', 'PaymentMethod',
+       'Telecom_Services', 'gender_Male', 'Partner_Yes', 'Dependents_Yes'],
+      dtype='object') and shape : (1409, 16)
+2026-04-04 11:42:01,498 - INFO - Before applying Ordinal technique----------------------------------------------------------
+2026-04-04 11:42:01,507 - INFO - After applying Ordinal Encoding the X_train columns are: Index(['gender_Male', 'Partner_Yes', 'Dependents_Yes', 'PhoneService_ordinal',
+       'MultipleLines_ordinal', 'InternetService_ordinal',
+       'OnlineSecurity_ordinal', 'OnlineBackup_ordinal',
+       'DeviceProtection_ordinal', 'TechSupport_ordinal',
+       'StreamingTV_ordinal', 'StreamingMovies_ordinal', 'Contract_ordinal',
+       'PaperlessBilling_ordinal', 'PaymentMethod_ordinal',
+       'Telecom_Services_ordinal'],
+      dtype='object') and shape : (5634, 16)
+2026-04-04 11:42:01,507 - INFO - After applying Ordinal Encoding the X_test columns are: Index(['gender_Male', 'Partner_Yes', 'Dependents_Yes', 'PhoneService_ordinal',
+       'MultipleLines_ordinal', 'InternetService_ordinal',
+       'OnlineSecurity_ordinal', 'OnlineBackup_ordinal',
+       'DeviceProtection_ordinal', 'TechSupport_ordinal',
+       'StreamingTV_ordinal', 'StreamingMovies_ordinal', 'Contract_ordinal',
+       'PaperlessBilling_ordinal', 'PaymentMethod_ordinal',
+       'Telecom_Services_ordinal'],
+      dtype='object') and shape : (1409, 16)

@@ -1,0 +1,16 @@
+2026-04-04 11:42:01,522 - INFO - Training data shape : (5634, 20)
+2026-04-04 11:42:01,522 - INFO - y_train shape : (5634,)
+2026-04-04 11:42:01,522 - INFO -  y_train data : 2142    0
+1623    0
+6074    1
+1362    1
+6754    0
+       ..
+3772    1
+5191    0
+5226    0
+5390    1
+860     0
+Name: Churn, Length: 5634, dtype: int64
+2026-04-04 11:42:03,165 - INFO - SMOTE training data shape : (8276, 20)
+2026-04-04 11:42:03,165 - INFO - SMOTE y_train shape : (8276,)

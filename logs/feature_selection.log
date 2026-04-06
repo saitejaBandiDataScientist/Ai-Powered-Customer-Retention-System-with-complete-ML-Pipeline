@@ -1,0 +1,26 @@
+2026-04-04 11:42:01,475 - INFO - Before Train Columns : (5634, 4) 
+ : Index(['SeniorCitizen', 'tenure_yeo_tri', 'MonthlyCharges_box_CapMS',
+       'TotalCharges_replaced_yeo_CapMS'],
+      dtype='object')
+2026-04-04 11:42:01,475 - INFO - Before Test Columns : (1409, 4) 
+ : Index(['SeniorCitizen', 'tenure_yeo_tri', 'MonthlyCharges_box_CapMS',
+       'TotalCharges_replaced_yeo_CapMS'],
+      dtype='object')
+2026-04-04 11:42:01,475 - INFO - The good columns(Train) from constant technique: 4 : Index(['SeniorCitizen', 'tenure_yeo_tri', 'MonthlyCharges_box_CapMS',
+       'TotalCharges_replaced_yeo_CapMS'],
+      dtype='object')
+2026-04-04 11:42:01,475 - INFO - The good columns(Test) from constant technique: 4 : Index(['SeniorCitizen', 'tenure_yeo_tri', 'MonthlyCharges_box_CapMS',
+       'TotalCharges_replaced_yeo_CapMS'],
+      dtype='object')
+2026-04-04 11:42:01,475 - INFO - The Bad columns(Train) from constant technique: 0 : Index([], dtype='object')
+2026-04-04 11:42:01,475 - INFO - The Bad columns(Test) from constant technique: 0 : Index([], dtype='object')
+2026-04-04 11:42:01,475 - INFO - The good columns(Train) from Quasi Constant technique: 4 : Index(['SeniorCitizen', 'tenure_yeo_tri', 'MonthlyCharges_box_CapMS',
+       'TotalCharges_replaced_yeo_CapMS'],
+      dtype='object')
+2026-04-04 11:42:01,475 - INFO - The good columns(Test) from Quasi Constant technique: 4 : Index(['SeniorCitizen', 'tenure_yeo_tri', 'MonthlyCharges_box_CapMS',
+       'TotalCharges_replaced_yeo_CapMS'],
+      dtype='object')
+2026-04-04 11:42:01,475 - INFO - The Bad columns(Train) from Quasi Constant technique: 0 : Index([], dtype='object')
+2026-04-04 11:42:01,475 - INFO - The Bad columns(Test) from Quasi Constant technique: 0 : Index([], dtype='object')
+2026-04-04 11:42:01,475 - INFO - ---------------------------------Hypothesis Testing-----------------------------------------------------------
+2026-04-04 11:42:01,485 - INFO - The Good Columns from Hypothesis Testing are : ['SeniorCitizen', 'tenure_yeo_tri', 'MonthlyCharges_box_CapMS', 'TotalCharges_replaced_yeo_CapMS']
